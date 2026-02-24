@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Instrument_Serif, DM_Sans, JetBrains_Mono } from 'next/font/google'
 import '@/styles/globals.css'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 // ─── Google Fonts ─────────────────────────────────────────────────────────────
 const instrumentSerif = Instrument_Serif({
@@ -61,10 +63,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to main content
         </a>
 
-        {/* Layout shell */}
-        {/* <Header /> — TODO: add after building Header component */}
+        <Header />
         <main id="main-content">{children}</main>
-        {/* <Footer /> — TODO: add after building Footer component */}
+        <Footer />
 
         {/* Chat widget — TODO: add after building ChatWidget component */}
         {/* <ChatWidget /> */}
