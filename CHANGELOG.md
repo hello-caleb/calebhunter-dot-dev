@@ -2,7 +2,15 @@
 
 All notable changes to the calebhunter.dev portfolio project will be documented in this file.
 
-## [Unreleased]
+---
+
+## [1.0.0] – 2026-02-24 — MVP complete
+
+All nine tasks shipped. Every page built, every PR merged to main.
+
+---
+
+## [0.9.0] – 2026-02-24 — Blog index and first post (Task 9)
 
 ### Added
 
@@ -36,6 +44,17 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 - Animated typing indicator (pulsing dots) while waiting for a response.
 - Keyboard accessibility: Escape closes the panel, focus trap when open, focus returns to trigger button on close.
 - "Powered by Claude" attribution in panel footer.
+
+---
+
+## [0.6.0] – 2026-02-24 — About page (Task 6)
+
+### Added
+
+- About page (`/about`) with five sections: opening bio, what I do, current focus, career stat grid, and tech stack badge grid.
+- Career highlights rendered as a responsive stat grid (2-col mobile, 3-col tablet, 4-col desktop) with large terracotta numbers and secondary descriptor text.
+- Tech stack rendered as a badge grid using the `Badge` component.
+- Framer Motion staggered fade-up entrance on all sections.
 
 ---
 
