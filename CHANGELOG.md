@@ -6,8 +6,13 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ### Added
 
-- About page (`/about`) with five sections: opening bio, what I do, current focus, career stat grid, and tech stack badge grid.
-- `AboutContent` client component with Framer Motion staggered fade-up entrance and responsive stat grid (terracotta numbers, secondary descriptor text).
+- Claude chat widget (`ChatWidget`) fixed to the bottom-right on every page. Opens a dark slide-up panel with streaming AI responses about Caleb.
+- `ChatMessage` component: user messages right-aligned (terracotta), assistant messages left-aligned (dark surface).
+- `ChatInput` component: textarea with send button; disabled while loading or at message limit; Enter key submits.
+- `/api/chat` POST route: server-side Anthropic SDK integration, SSE streaming, 20-message per-session rate limit with friendly copy, API key never exposed to client.
+- Animated typing indicator (pulsing dots) while waiting for a response.
+- Keyboard accessibility: Escape closes the panel, focus trap when open, focus returns to trigger button on close.
+- "Powered by Claude" attribution in panel footer.
 
 ---
 
