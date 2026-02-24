@@ -1,7 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import { motion, type Variants } from 'framer-motion'
-import { Mail, Linkedin, Github, Twitter } from 'lucide-react'
+import { Mail, Linkedin, Github, Twitter, Check } from 'lucide-react'
 import Container from '@/components/ui/Container'
 
 const fadeUp: Variants = {
@@ -14,38 +15,39 @@ const stagger: Variants = {
   show: { transition: { staggerChildren: 0.08 } },
 }
 
-const contacts = [
-  {
-    platform: 'Email',
-    handle: 'caleb.r.hunter@gmail.com',
-    href: 'mailto:caleb.r.hunter@gmail.com',
-    icon: Mail,
-    external: false,
-  },
+const EMAIL = 'caleb.r.hunter@gmail.com'
+
+const socialLinks = [
   {
     platform: 'LinkedIn',
     handle: 'linkedin.com/in/calebhunter',
     href: 'https://linkedin.com/in/calebhunter',
     icon: Linkedin,
-    external: true,
   },
   {
     platform: 'GitHub',
     handle: 'github.com/hello-caleb',
     href: 'https://github.com/hello-caleb',
     icon: Github,
-    external: true,
   },
   {
     platform: 'X',
     handle: '@Caleb9to5',
     href: 'https://x.com/Caleb9to5',
     icon: Twitter,
-    external: true,
   },
 ]
 
 export default function ContactContent() {
+  const [copied, setCopied] = useState(false)
+
+  function handleEmailClick() {
+    navigator.clipboard.writeText(EMAIL).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+
   return (
     <>
       {/* Hero */}
@@ -69,12 +71,33 @@ export default function ContactContent() {
             animate="show"
             className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl"
           >
-            {contacts.map(({ platform, handle, href, icon: Icon, external }) => (
+            {/* Email — copy to clipboard */}
+            <motion.button
+              variants={fadeUp}
+              onClick={handleEmailClick}
+              className="flex items-center gap-4 rounded-xl border border-border bg-surface p-5 transition-all duration-200 hover:border-border-hover hover:shadow-md group text-left w-full"
+            >
+              <span className="flex items-center justify-center w-10 h-10 rounded-lg bg-accent-light text-accent shrink-0">
+                {copied ? <Check size={18} /> : <Mail size={18} />}
+              </span>
+              <div className="min-w-0">
+                <p className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-0.5">
+                  Email
+                </p>
+                <p className="text-sm font-medium text-text-primary truncate group-hover:text-accent transition-colors">
+                  {copied ? 'Copied!' : EMAIL}
+                </p>
+              </div>
+            </motion.button>
+
+            {/* Social links */}
+            {socialLinks.map(({ platform, handle, href, icon: Icon }) => (
               <motion.a
                 key={platform}
                 variants={fadeUp}
                 href={href}
-                {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-4 rounded-xl border border-border bg-surface p-5 transition-all duration-200 hover:border-border-hover hover:shadow-md group"
               >
                 <span className="flex items-center justify-center w-10 h-10 rounded-lg bg-accent-light text-accent shrink-0">
