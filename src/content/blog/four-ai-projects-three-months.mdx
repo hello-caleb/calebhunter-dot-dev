@@ -1,0 +1,51 @@
+---
+title: "What I Learned Building 4 AI Projects in 3 Months"
+date: "2026-02-24"
+excerpt: "HealthBridge, BountySwarm, Beacon, and OmniRoute taught me different things. Here's what actually stuck."
+---
+
+Three months, four projects, two hackathons, and a lot of late-night debugging sessions. Here's what I actually learned — not the polished version, but the things that changed how I think about building with AI.
+
+## Speed constraints tell you what actually matters
+
+[HealthBridge](/projects/healthbridge) was built in 48 hours. That's not a long time to build a real-time ASL translation tool for clinical settings.
+
+The constraint forced a decision early: which model? The instinct is to reach for the most capable option. The right answer was Gemini 3 Flash — not because it's the most powerful, but because latency was the binding constraint. In a live conversation between a doctor and a deaf patient, a two-second lag destroys the product. Sub-second response time wasn't a feature. It was the whole thing.
+
+Hackathon timelines compress decision-making in a useful way. When you have 48 hours, you get very clear about what's load-bearing and what's optional. I've started applying that framing to longer projects: what would I cut if I had 48 hours? If the answer is "most of it," that's useful information about what I'm actually building.
+
+## Multi-agent systems are an honest model for how good judgment works
+
+[BountySwarm](/projects/bountyswarm) runs five AI agents — Scout, Analyst, Auditor, Compliance, Executor — that evaluate hackathon submissions and only release prize funds when all five reach consensus.
+
+The architecture mirrors something true about human decision-making: distributed evaluation with diverse perspectives produces better outcomes than a single point of judgment. Any one of those agents can be wrong. None of them can unilaterally release funds or withhold a prize. The consensus mechanism is the product.
+
+What surprised me was how naturally this mapped onto a trust problem. Smart contract escrow is trustless by design. AI judgment isn't. The multi-agent consensus architecture was the bridge — it doesn't ask you to trust any single model's evaluation, only to trust that five different perspectives, evaluated independently, will wash out most errors.
+
+## Voice-first is a product decision, not a technical one
+
+Both [Beacon](/projects/beacon) and [OmniRoute](/projects/omniroute) are voice-first. That wasn't a technical requirement. It was a deliberate product choice made before a line of code was written.
+
+For Beacon, a career coaching tool, voice eliminates the friction of a form-heavy interface. Job searching is already stressful. A tool that starts with "tell me about your situation" instead of "fill out your work history" changes the emotional register of the interaction. People talk differently than they type. They're more honest, more specific, and they don't edit themselves as much. That's actually useful signal for a coaching tool.
+
+For OmniRoute, voice is part of the abstraction. The whole point is that you shouldn't have to think about which AI model to use. A voice interface reinforces that — you're talking to one thing, not navigating a menu of options. The routing complexity happens underneath.
+
+The lesson: interface design decisions are product strategy decisions. Choosing voice isn't about technology. It's about what relationship you want the user to have with the product.
+
+## The meta problem is often more interesting than the object-level problem
+
+OmniRoute is an AI tool about AI tools. The thing it solves is the proliferation of models — the fact that there are now dozens of capable options and no good way to use them together.
+
+What made the architecture interesting was the Elasticsearch capability registry. Instead of hardcoding routing rules (which go stale immediately in a market moving this fast), the router queries a living knowledge base of model capabilities, updated continuously. The routing logic is semantic, not static. That's a meaningfully different design.
+
+I find myself drawn to these meta-level problems: not "build an AI feature," but "build the thing that makes AI features work better." OmniRoute, BountySwarm's consensus layer, Beacon's trajectory modeling engine — all of them are more infrastructure than product. That's where I want to keep building.
+
+## What "in development" actually means
+
+Beacon and OmniRoute are real projects with real design decisions behind them. They are not finished. The architecture is being designed and the hard problems — persistent career modeling, reliable multi-model orchestration — aren't solved yet.
+
+I'm documenting them as in-development because that's the honest state. A well-designed README that explains what you're building and why, before the code exists, is more credible than a demo that glosses over what's missing. The repos are public. The thinking is visible.
+
+That's the standard I'm trying to hold: build in public, document honestly, ship when it's real.
+
+The four projects are at [calebhunter.dev/projects](/projects).

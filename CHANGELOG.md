@@ -4,6 +4,14 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ---
 
+## [Unreleased] — Second blog post (Task 15)
+
+### Added
+
+- Second blog post: "What I Learned Building 4 AI Projects in 3 Months" — covers HealthBridge, BountySwarm, Beacon, and OmniRoute through four builder lessons: speed constraints, multi-agent consensus, voice-first as product strategy, and the appeal of meta-level infrastructure problems.
+
+---
+
 ## [1.2.0] – 2026-02-24 — Beacon & OmniRoute GitHub repos (Task 14)
 
 ### Added
