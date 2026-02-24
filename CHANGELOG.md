@@ -6,6 +6,16 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ### Added
 
+- Contact page (`/contact`) with hero section and four contact cards: Email, LinkedIn, GitHub, X.
+- Cards use Lucide icons, subtle border, hover shadow, and staggered Framer Motion fade-up entrance.
+- mailto link for email; all external links open in new tab with `rel="noopener noreferrer"`.
+
+---
+
+## [0.7.0] – 2026-02-24 — Claude chat widget and API route (Task 7)
+
+### Added
+
 - Claude chat widget (`ChatWidget`) fixed to the bottom-right on every page. Opens a dark slide-up panel with streaming AI responses about Caleb.
 - `ChatMessage` component: user messages right-aligned (terracotta), assistant messages left-aligned (dark surface).
 - `ChatInput` component: textarea with send button; disabled while loading or at message limit; Enter key submits.
