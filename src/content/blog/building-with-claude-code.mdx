@@ -1,16 +1,45 @@
 ---
 title: "Building My Portfolio with Claude Code: An AI-Assisted Development Workflow"
 date: "2026-02-24"
-excerpt: "How I used Claude Code as a development partner to scaffold, design, and build calebhunter.dev from scratch — and what I learned about working with AI on real projects."
+excerpt: "How I used Claude Code as a development partner to plan, build, and ship a production Next.js portfolio site — and what the workflow actually looked like."
 ---
 
-# Building My Portfolio with Claude Code
+This portfolio site is a portfolio piece about building portfolio pieces. Meta, yes — but intentional.
 
-*This post is coming soon. I'm documenting the full build process as I go.*
+The goal was to demonstrate what an experienced developer who takes AI seriously actually does with these tools. Not a toy project, not a vibe-coded prototype. A production site built with a real workflow, documented transparently, with a public repo anyone can inspect.
 
-Topics I'll cover:
-- How I structured the project spec and handed it to Claude Code
-- The prompting workflow that worked (and what didn't)
-- Architecture decisions made collaboratively with an AI
-- Performance and accessibility from the start
-- Lessons for developers building with Claude Code as a daily driver
+## The Workflow
+
+Planning happened in Claude.ai. I wrote a detailed project spec — tech stack, design system, component structure, page requirements, and a prioritized task list broken into nine discrete features. I worked through it with Claude until I had a document I trusted. That document became the source of truth for everything that followed.
+
+Building happened in Claude Code. Each task from the spec became a feature branch. I gave Claude Code the task description, the relevant existing files, and any design constraints. It scaffolded components, wrote the implementation, and ran lint and build checks before I reviewed. I reviewed every PR in GitHub before merging. Vercel deployed on every merge to main.
+
+The loop: plan with Claude, build with Claude Code, review in GitHub, merge, ship. Nine pull requests, nine tasks, about two days of focused work from blank repo to live site.
+
+## What Worked Well
+
+**Speed of scaffolding.** Getting from a spec to working, type-safe components is where Claude Code earns its keep. The first task — scaffold a Next.js 16 app with Tailwind v4, custom design tokens, and route stubs for every page — took under 20 minutes. That's an hour of setup I've done a hundred times and don't miss doing manually.
+
+**Consistency across the codebase.** Because Claude Code had the full spec and could see every file it had previously created, components stayed consistent without me policing it. Same color tokens, same Framer Motion animation patterns, same typography system — across every component, every task, without drift.
+
+**Staying in scope.** When you're building alone it's easy to scope-creep, to refactor something adjacent, to add one more thing. Claude Code does what's in the task description and nothing else. That constraint turned out to be a feature. The build stayed clean.
+
+## What Required Human Judgment
+
+**Design taste.** Claude Code implements a design system correctly. It can't feel whether something is right. I caught em-dashes appearing in body copy that made the text read as AI-generated. I adjusted spacing, rewrote section copy, and made dozens of small calls that add up to a site with a consistent voice.
+
+**Content.** The chat widget system prompt, the project descriptions, the about page — all of it needed real review and revision. AI can draft a first pass. The voice has to be yours.
+
+**Catching real bugs.** Every PR got a genuine review. A TypeScript type error on Framer Motion variants. An email card that silently failed because `mailto:` links don't work when no default mail client is configured. Human review caught both before they merged.
+
+## The Meta-Point
+
+This is the workflow I would teach a startup founder who wants to ship faster with AI: write a real spec first, use AI to build against it systematically, keep the human in the loop for taste and correctness, treat every PR as a checkpoint.
+
+Claude Code doesn't replace the developer. It replaces the parts of development that are mechanical — scaffolding, boilerplate, implementing a known pattern consistently — and returns that time to the parts that require judgment.
+
+If you're evaluating whether AI-assisted development actually works in practice: yes, when you use it as a disciplined partner with clear instructions and real oversight. Not as a magic wand you point at a blank editor.
+
+## The Code
+
+The full repository is public at [github.com/hello-caleb/calebhunter-dot-dev](https://github.com/hello-caleb/calebhunter-dot-dev). Every commit, every PR, every task branch is in the history. The workflow described here is visible in the git log.
