@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Navigation from './Navigation'
 import Container from '@/components/ui/Container'
@@ -40,7 +40,7 @@ export default function Header() {
       {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -50,7 +50,7 @@ export default function Header() {
             <Container>
               <Navigation orientation="vertical" onLinkClick={() => setMenuOpen(false)} />
             </Container>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

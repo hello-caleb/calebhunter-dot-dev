@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react'
-import { motion, type Variants } from 'framer-motion'
+import { m, type Variants } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import Badge from '@/components/ui/Badge'
 import type { Project } from '@/content/projects'
@@ -37,9 +37,9 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
     <section className="py-16 md:py-24">
       <Container>
         <div className="max-w-3xl mx-auto">
-          <motion.div variants={stagger} initial="hidden" animate="show">
+          <m.div variants={stagger} initial="hidden" animate="show">
             {/* Back link */}
-            <motion.div variants={fadeUp}>
+            <m.div variants={fadeUp}>
               <Link
                 href="/projects"
                 className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-10"
@@ -47,33 +47,33 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                 <ArrowLeft size={14} />
                 All Projects
               </Link>
-            </motion.div>
+            </m.div>
 
             {/* Header */}
-            <motion.div variants={fadeUp} className="mb-8">
+            <m.div variants={fadeUp} className="mb-8">
               <Badge variant={statusVariant[status]}>{status}</Badge>
               <h1 className="font-serif text-5xl md:text-6xl text-text-primary mt-3 mb-4">
                 {title}
               </h1>
               <p className="text-xl text-text-secondary leading-relaxed">{tagline}</p>
-            </motion.div>
+            </m.div>
 
             {/* Description */}
-            <motion.p variants={fadeUp} className="text-text-secondary leading-relaxed mb-12">
+            <m.p variants={fadeUp} className="text-text-secondary leading-relaxed mb-12">
               {description}
-            </motion.p>
+            </m.p>
 
             {/* AI Involvement callout */}
-            <motion.div
+            <m.div
               variants={fadeUp}
               className="border-l-4 border-accent bg-accent-light rounded-r-lg px-6 py-5 mb-12"
             >
               <h2 className="font-serif text-xl text-text-primary mb-3">AI Involvement</h2>
               <p className="text-text-secondary leading-relaxed">{aiInvolvement}</p>
-            </motion.div>
+            </m.div>
 
             {/* Technical Decisions */}
-            <motion.div variants={fadeUp} className="mb-12">
+            <m.div variants={fadeUp} className="mb-12">
               <h2 className="font-serif text-2xl text-text-primary mb-5">
                 Key Technical Decisions
               </h2>
@@ -85,10 +85,10 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </m.div>
 
             {/* Tech Stack */}
-            <motion.div variants={fadeUp} className="mb-12">
+            <m.div variants={fadeUp} className="mb-12">
               <h2 className="font-serif text-2xl text-text-primary mb-4">Tech Stack</h2>
               <div className="flex flex-wrap gap-2">
                 {techStack.map((tech) => (
@@ -97,10 +97,10 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                   </Badge>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Links */}
-            <motion.div variants={fadeUp}>
+            <m.div variants={fadeUp}>
               <h2 className="font-serif text-2xl text-text-primary mb-4">Links</h2>
               <div className="flex flex-wrap gap-3">
                 {links.demo && (
@@ -150,8 +150,8 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                   </p>
                 )}
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </Container>
     </section>

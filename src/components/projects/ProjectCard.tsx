@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import Badge from '@/components/ui/Badge'
 import type { Project } from '@/content/projects'
 
@@ -19,7 +19,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
@@ -53,6 +53,6 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       >
         View Project <ArrowRight size={14} />
       </Link>
-    </motion.div>
+    </m.div>
   )
 }

@@ -4,6 +4,17 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ---
 
+## [Unreleased] — Performance & accessibility (Task 10)
+
+### Changed
+
+- Wrapped root layout with `MotionProvider` (`LazyMotion` + async `domMax`) to defer Framer Motion's full feature bundle until after initial render, addressing ~1,196 KiB of unused JS on first load.
+- Switched all animated components from `motion.*` to `m.*` (Header, Hero, ProjectCard, ProjectDetail, AboutContent, ContactContent, ChatWidget).
+- Lazy-loaded `ChatWidget` via `next/dynamic({ ssr: false })` using a thin `ChatWidgetLoader` client wrapper, removing the chat panel from the SSR bundle.
+- Darkened `--color-text-tertiary` from `#9b9b9b` to `#717171` to meet WCAG AA contrast ratio (4.66:1 vs. the required 4.5:1 on the `#fafaf8` background).
+
+---
+
 ## [1.0.0] – 2026-02-24 — MVP complete
 
 All nine tasks shipped. Every page built, every PR merged to main.
