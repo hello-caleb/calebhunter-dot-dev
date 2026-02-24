@@ -1,16 +1,13 @@
 import type { Metadata } from 'next'
+import { projects } from '@/content/projects'
+import ProjectDetail from '@/components/projects/ProjectDetail'
 
-export const metadata: Metadata = { title: 'OmniRoute' }
+export const metadata: Metadata = {
+  title: 'OmniRoute',
+  description: 'Voice-first AI meta-router using Elasticsearch to route requests to the optimal model.',
+}
 
 export default function OmniRoutePage() {
-  return (
-    <div className="min-h-screen px-6 py-16 max-w-content mx-auto">
-      <h1 className="font-serif text-5xl text-text-primary mb-4">OmniRoute</h1>
-      <p className="text-text-secondary text-lg mb-4">
-        Voice-first universal AI router using Elasticsearch to intelligently route to the optimal
-        model.
-      </p>
-      {/* TODO: replace with <ProjectDetail project={omniroute} /> */}
-    </div>
-  )
+  const project = projects.find((p) => p.slug === 'omniroute')!
+  return <ProjectDetail project={project} />
 }
