@@ -65,7 +65,7 @@ export default function AboutContent() {
             {/* 1. Opening */}
             <motion.div variants={fadeUp}>
               <p className="text-lg text-text-secondary leading-relaxed">
-                I&apos;ve spent 20+ years at the intersection of developers and platforms — building
+                I&apos;ve spent 20+ years at the intersection of developers and platforms, building
                 the programs, communities, and technical content that help developers succeed.
                 I&apos;ve done this at Meta (scaling a VR developer community from 2,200 to 4,600),
                 Google (serving 60,000+ internal developers), IBM (driving 40% platform adoption
@@ -82,7 +82,7 @@ export default function AboutContent() {
                 projects). I design and run developer programs that drive measurable adoption. I
                 translate between technical teams and business stakeholders. I advise startups on
                 go-to-market strategy and developer ecosystem growth. And I create the technical
-                content — tutorials, workshops, hackathons, documentation — that turns curious
+                content: tutorials, workshops, hackathons, and documentation that turn curious
                 developers into committed platform users.
               </p>
             </motion.div>
@@ -93,13 +93,13 @@ export default function AboutContent() {
                 What I&apos;m focused on now
               </h2>
               <p className="text-text-secondary leading-relaxed">
-                I&apos;m deep in the AI builder ecosystem — building applications with Claude,
-                Gemini, and other frontier models, participating in hackathons, and exploring how
-                multi-agent architectures, voice AI, and intelligent routing can create the next
-                generation of developer tools. I&apos;m looking for a role where I can combine my
-                two decades of developer ecosystem experience with my hands-on AI building practice
-                — ideally helping a platform company like Anthropic bring their technology to the
-                startup community.
+                Right now I&apos;m building applications with Claude, Gemini, and other frontier
+                models, participating in hackathons, and exploring how multi-agent architectures,
+                voice AI, and intelligent routing can shape the next generation of developer tools.
+                I&apos;m looking for a role where I can bring my two decades of developer ecosystem
+                experience together with my hands-on AI building practice. My goal is to help a
+                platform company like Anthropic get their technology into the hands of the startup
+                community.
               </p>
             </motion.div>
 
