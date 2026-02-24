@@ -80,7 +80,9 @@ export const projects: Project[] = [
       'Real-time interview coaching — in-session feedback loop, not just pre-interview prep materials',
       'LLM as the core logic layer — business rules encoded in prompts, not hard-coded filters',
     ],
-    links: {},
+    links: {
+      github: 'https://github.com/hello-caleb/beacon',
+    },
   },
   {
     id: 'omniroute',
@@ -100,6 +102,8 @@ export const projects: Project[] = [
       'Multi-model chaining support — architecture designed for tasks that benefit from specialized model combinations',
       'Single voice interface — all routing complexity hidden from the user by design',
     ],
-    links: {},
+    links: {
+      github: 'https://github.com/hello-caleb/omniroute',
+    },
   },
 ]
