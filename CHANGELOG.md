@@ -6,9 +6,22 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ### Added
 
+- Blog index (`/blog`) with hero section and readable post list, separated by dividers.
+- Dynamic blog post route (`/blog/[slug]`) with MDX rendering via `next-mdx-remote/rsc`, back navigation, and `generateStaticParams` for SSG.
+- First post: "Building My Portfolio with Claude Code" (~700 words) covering the planning workflow, what worked, what required human judgment, and the meta-point about AI-assisted development.
+- `src/lib/blog.ts` utility for reading and parsing MDX posts with `gray-matter` frontmatter.
+- Custom `.prose` CSS component in `globals.css` for readable blog typography (headings, links, code, blockquotes).
+- Dependencies: `next-mdx-remote@6`, `gray-matter@4`.
+
+---
+
+## [0.8.0] – 2026-02-24 — Contact page (Task 8)
+
+### Added
+
 - Contact page (`/contact`) with hero section and four contact cards: Email, LinkedIn, GitHub, X.
 - Cards use Lucide icons, subtle border, hover shadow, and staggered Framer Motion fade-up entrance.
-- mailto link for email; all external links open in new tab with `rel="noopener noreferrer"`.
+- Email card copies address to clipboard with a "Copied!" confirmation; external links open in new tab.
 
 ---
 
