@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { motion, AnimatePresence, type Variants } from 'framer-motion'
+import { m, AnimatePresence, type Variants } from 'framer-motion'
 import { X, MessageCircle } from 'lucide-react'
 import ChatMessage from './ChatMessage'
 import ChatInput from './ChatInput'
@@ -150,7 +150,7 @@ export default function ChatWidget() {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             ref={panelRef}
             role="dialog"
             aria-label="Chat with Claude about Caleb"
@@ -192,7 +192,7 @@ export default function ChatWidget() {
                 <div className="flex justify-start">
                   <div className="bg-[#2a2a2a] rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1">
                     {[0, 1, 2].map((i) => (
-                      <motion.span
+                      <m.span
                         key={i}
                         className="w-1.5 h-1.5 rounded-full bg-[#6b6b6b]"
                         animate={{ opacity: [0.3, 1, 0.3] }}
@@ -215,7 +215,7 @@ export default function ChatWidget() {
                 Powered by Claude
               </p>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 

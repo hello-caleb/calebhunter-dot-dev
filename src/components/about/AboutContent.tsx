@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, type Variants } from 'framer-motion'
+import { m, type Variants } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import Badge from '@/components/ui/Badge'
 
@@ -56,14 +56,14 @@ export default function AboutContent() {
       {/* Body */}
       <section className="py-16 md:py-20">
         <Container>
-          <motion.div
+          <m.div
             variants={stagger}
             initial="hidden"
             animate="show"
             className="max-w-3xl mx-auto space-y-16"
           >
             {/* 1. Opening */}
-            <motion.div variants={fadeUp}>
+            <m.div variants={fadeUp}>
               <p className="text-lg text-text-secondary leading-relaxed">
                 I&apos;ve spent 20+ years at the intersection of developers and platforms, building
                 the programs, communities, and technical content that help developers succeed.
@@ -72,10 +72,10 @@ export default function AboutContent() {
                 growth), Samsung Next (advising 15+ AI/ML portfolio companies), and Jina AI (growing
                 an open-source AI community to 400,000+ users).
               </p>
-            </motion.div>
+            </m.div>
 
             {/* 2. What I actually do */}
-            <motion.div variants={fadeUp}>
+            <m.div variants={fadeUp}>
               <h2 className="font-serif text-2xl text-text-primary mb-4">What I actually do</h2>
               <p className="text-text-secondary leading-relaxed">
                 I&apos;m a builder and a connector. I build AI-powered applications (see my
@@ -85,10 +85,10 @@ export default function AboutContent() {
                 content: tutorials, workshops, hackathons, and documentation that turn curious
                 developers into committed platform users.
               </p>
-            </motion.div>
+            </m.div>
 
             {/* 3. What I'm focused on now */}
-            <motion.div variants={fadeUp}>
+            <m.div variants={fadeUp}>
               <h2 className="font-serif text-2xl text-text-primary mb-4">
                 What I&apos;m focused on now
               </h2>
@@ -101,10 +101,10 @@ export default function AboutContent() {
                 platform company like Anthropic get their technology into the hands of the startup
                 community.
               </p>
-            </motion.div>
+            </m.div>
 
             {/* 4. Career highlights — stat grid */}
-            <motion.div variants={fadeUp}>
+            <m.div variants={fadeUp}>
               <h2 className="font-serif text-2xl text-text-primary mb-6">Career highlights</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {stats.map((stat) => (
@@ -116,10 +116,10 @@ export default function AboutContent() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
 
             {/* 5. Tech I work with */}
-            <motion.div variants={fadeUp}>
+            <m.div variants={fadeUp}>
               <h2 className="font-serif text-2xl text-text-primary mb-4">Tech I work with</h2>
               <div className="flex flex-wrap gap-2">
                 {techStack.map((tech) => (
@@ -128,8 +128,8 @@ export default function AboutContent() {
                   </Badge>
                 ))}
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </Container>
       </section>
     </>

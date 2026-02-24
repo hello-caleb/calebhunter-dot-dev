@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, type Variants } from 'framer-motion'
+import { m, type Variants } from 'framer-motion'
 import { Mail, Linkedin, Github, Twitter, Check } from 'lucide-react'
 import Container from '@/components/ui/Container'
 
@@ -65,14 +65,14 @@ export default function ContactContent() {
       {/* Cards */}
       <section className="py-16 md:py-20">
         <Container>
-          <motion.div
+          <m.div
             variants={stagger}
             initial="hidden"
             animate="show"
             className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl"
           >
             {/* Email — copy to clipboard */}
-            <motion.button
+            <m.button
               variants={fadeUp}
               onClick={handleEmailClick}
               className="flex items-center gap-4 rounded-xl border border-border bg-surface p-5 transition-all duration-200 hover:border-border-hover hover:shadow-md group text-left w-full"
@@ -88,11 +88,11 @@ export default function ContactContent() {
                   {copied ? 'Copied!' : EMAIL}
                 </p>
               </div>
-            </motion.button>
+            </m.button>
 
             {/* Social links */}
             {socialLinks.map(({ platform, handle, href, icon: Icon }) => (
-              <motion.a
+              <m.a
                 key={platform}
                 variants={fadeUp}
                 href={href}
@@ -111,9 +111,9 @@ export default function ContactContent() {
                     {handle}
                   </p>
                 </div>
-              </motion.a>
+              </m.a>
             ))}
-          </motion.div>
+          </m.div>
         </Container>
       </section>
     </>
