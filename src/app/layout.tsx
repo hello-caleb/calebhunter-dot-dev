@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${instrumentSerif.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="font-sans bg-background text-text-primary antialiased">
+      <body className="font-sans bg-background text-text-primary antialiased min-h-screen flex flex-col">
         {/* Skip to content — accessibility */}
         <a
           href="#main-content"
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
 
         <Header />
-        <main id="main-content">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
 
         {/* Chat widget — TODO: add after building ChatWidget component */}
