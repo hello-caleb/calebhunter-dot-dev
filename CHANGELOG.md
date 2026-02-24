@@ -4,6 +4,16 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ---
 
+## [Unreleased] — Beacon & OmniRoute GitHub repos (Task 14)
+
+### Added
+
+- Public GitHub repo for Beacon ([github.com/hello-caleb/beacon](https://github.com/hello-caleb/beacon)) with full README covering problem statement, architecture diagram, tech stack, and status.
+- Public GitHub repo for OmniRoute ([github.com/hello-caleb/omniroute](https://github.com/hello-caleb/omniroute)) with full README covering problem statement, routing architecture diagram, Elasticsearch capability registry design, and status.
+- GitHub links for Beacon and OmniRoute in `src/content/projects.ts`, replacing the "Coming Soon" state on both project detail pages.
+
+---
+
 ## [Unreleased] — Performance & accessibility (Task 10)
 
 ### Changed
