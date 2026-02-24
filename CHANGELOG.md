@@ -4,7 +4,7 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ---
 
-## [Unreleased] — Beacon & OmniRoute GitHub repos (Task 14)
+## [1.2.0] – 2026-02-24 — Beacon & OmniRoute GitHub repos (Task 14)
 
 ### Added
 
@@ -14,7 +14,7 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ---
 
-## [Unreleased] — Performance & accessibility (Task 10)
+## [1.1.0] – 2026-02-24 — Performance & accessibility (Task 10)
 
 ### Changed
 
