@@ -4,7 +4,7 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ---
 
-## [Unreleased] — Second blog post (Task 15)
+## [1.3.0] – 2026-02-24 — Second blog post (Task 15)
 
 ### Added
 
