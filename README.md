@@ -4,15 +4,15 @@ Portfolio site for Caleb Hunter — AI builder, developer ecosystem lead, and 20
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 16 (App Router) + TypeScript |
-| Styling | Tailwind CSS v4 with custom design tokens |
-| AI Chat | Anthropic Claude API via `/api/chat` (server-side) |
-| Fonts | Instrument Serif, DM Sans, JetBrains Mono (Google Fonts) |
-| Animations | Framer Motion |
-| Icons | Lucide React |
-| Deployment | Vercel |
+| Layer      | Technology                                               |
+| ---------- | -------------------------------------------------------- |
+| Framework  | Next.js 16 (App Router) + TypeScript                     |
+| Styling    | Tailwind CSS v4 with custom design tokens                |
+| AI Chat    | Anthropic Claude API via `/api/chat` (server-side)       |
+| Fonts      | Instrument Serif, DM Sans, JetBrains Mono (Google Fonts) |
+| Animations | Framer Motion                                            |
+| Icons      | Lucide React                                             |
+| Deployment | Vercel                                                   |
 
 ## Getting Started
 
@@ -39,8 +39,8 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ### Environment Variables
 
-| Variable | Description |
-|----------|-------------|
+| Variable            | Description                                                                    |
+| ------------------- | ------------------------------------------------------------------------------ |
 | `ANTHROPIC_API_KEY` | Anthropic API key from [console.anthropic.com](https://console.anthropic.com/) |
 
 ## Project Structure
@@ -82,12 +82,12 @@ npm run lint      # Run ESLint
 
 Custom design tokens are defined in `src/styles/globals.css` using Tailwind v4's `@theme` directive, making them available as Tailwind utilities (`bg-background`, `text-accent`, etc.) and as CSS custom properties (`var(--color-accent)`).
 
-| Token | Value | Tailwind Class |
-|-------|-------|---------------|
-| background | `#FAFAF8` | `bg-background` |
-| accent | `#D4763C` | `text-accent`, `bg-accent` |
-| text-primary | `#1A1A1A` | `text-text-primary` |
-| chat-bg | `#1A1A1A` | `bg-chat-bg` |
+| Token        | Value     | Tailwind Class             |
+| ------------ | --------- | -------------------------- |
+| background   | `#FAFAF8` | `bg-background`            |
+| accent       | `#D4763C` | `text-accent`, `bg-accent` |
+| text-primary | `#1A1A1A` | `text-text-primary`        |
+| chat-bg      | `#1A1A1A` | `bg-chat-bg`               |
 
 ## License
 
