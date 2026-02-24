@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
+import AboutContent from '@/components/about/AboutContent'
 
-export const metadata: Metadata = { title: 'About' }
+export const metadata: Metadata = {
+  title: 'About',
+  description:
+    '20+ years at the intersection of developers and platforms — building programs, communities, and technical content that help developers succeed.',
+}
 
 export default function AboutPage() {
-  return (
-    <div className="min-h-screen px-6 py-16 max-w-content mx-auto">
-      <h1 className="font-serif text-5xl text-text-primary mb-8">About</h1>
-      {/* TODO: implement full About page content */}
-    </div>
-  )
+  return <AboutContent />
 }
