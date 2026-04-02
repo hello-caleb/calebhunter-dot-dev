@@ -1,0 +1,97 @@
+---
+title: "I Use Google Drive as My Primary File System. Here's How I Got Claude Cowork to Play Nice With It."
+date: "2026-04-02"
+excerpt: "How to configure Google Drive for Desktop with Claude Cowork's file system access on macOS. Streaming vs. mirroring explained, setup steps, and the gotchas to avoid."
+---
+
+---
+
+**TL;DR:** If you use Google Drive for Desktop in streaming mode, Claude Cowork can't reliably access those files. Set your working folders to "Available offline" (mirrored), grant Cowork access to those specific folders, and everything works. Details below.
+
+---
+
+I'm in the middle of going cloud-first with my file storage. The goal: use Google Drive as my primary document store, stream everything to my Mac via the Google Drive for Desktop app, and only mirror the folders I'm actively working in. Less local storage used, everything accessible from anywhere.
+
+Then I started setting up Claude Cowork's file system access, and hit a question that I couldn't find a clear answer to anywhere.
+
+## The Setup
+
+If you're not familiar with Google Drive for Desktop on macOS, here's the short version: it mounts your entire Google Drive as a volume in Finder. It looks and behaves like a normal folder full of normal files. You can navigate it, open files, drag things around. It feels local.
+
+But it's not. By default, those files are **streamed**. They exist in the cloud. What you see in Finder are essentially placeholders that get downloaded on demand when you open them.
+
+This matters when you introduce an AI tool that wants to read and write files on your machine.
+
+## The Question
+
+Claude Cowork (the desktop app's automation feature) has a file system access permission. You grant it access to specific folders, and it can read, create, and modify files in those folders directly. No uploading, no copy-pasting. It just works with whatever is on disk.
+
+So my question was straightforward: if I point Cowork at a folder that *looks* local but is actually my streamed Google Drive, what happens? Can it read those files? Will it error out? Will it silently fail?
+
+This is different from Claude's Google Drive connector in chat, which works with cloud-native Google Docs and Sheets directly. Cowork's file system access is a different mechanism entirely. It sees files on disk, period.
+
+## What I Found
+
+The core issue comes down to one distinction: **streaming vs. mirroring**.
+
+Google Drive for Desktop has two modes for how it handles your files:
+
+**Streaming** is the default. Files live in the cloud. Finder shows them, but the actual bytes only get pulled down when you (or an app) opens them. Until that happens, the file is basically a stub. It has a name and an icon, but there's nothing really there yet from a filesystem perspective.
+
+**Mirroring** means the files live both in the cloud and fully on your local disk. The bytes are always present. Changes sync both directions automatically.
+
+Cowork runs in an isolated environment and interacts with files through the folders you share with it. When it tries to open a file, it needs actual bytes on disk. A streamed placeholder that hasn't been downloaded yet? Cowork may not see it at all, or it may throw an error.
+
+So the answer to my question: **streamed-only files are unreliable with Cowork. Mirrored files work perfectly.**
+
+## The File Format Gotcha
+
+There's a second thing worth knowing.
+
+In Claude chat with the Google Drive connector, you can work directly with native Google Docs, Sheets, and Slides. Those are cloud-native formats that the connector understands.
+
+Cowork's file system access is different. It works with actual files: `.docx`, `.txt`, `.md`, `.xlsx`, `.pdf`, code files, and so on. If you have a Google Doc in your Drive, it shows up in Finder as a `.gdoc` shortcut that opens in your browser. Cowork can't edit that. It's not a real document file.
+
+If you want Cowork to work with a Google Doc through the filesystem, you need that document saved or exported as a standard format like `.docx` or `.md`. Then it's a real file, and Cowork handles it like any other.
+
+## My Setup (What Actually Works)
+
+Here's the configuration I landed on:
+
+**Keep streaming as the global default.** The whole point of my cloud-first approach is to save local disk space. I don't need years of archived documents taking up room on my laptop.
+
+**Selectively mirror the folders I'm actively working in.** In Finder, I right-click the specific Drive folders I want Cowork to access and choose "Make available offline." Google Drive downloads those folders and keeps them synced locally. Everything else stays streamed.
+
+**Grant Cowork access only to those mirrored folders.** In the Claude desktop app's file system settings, I point it at the mirrored project folders. Not my entire Drive. Not my whole disk. Just the working directories.
+
+**Use local-friendly file formats for anything I want Cowork to touch.** That means `.md`, `.txt`, `.docx`, `.xlsx`, and standard code files. If I need to work with a Google Doc through Cowork, I export it first.
+
+The result: Cowork treats those mirrored Drive folders like normal local directories. It reads and writes files without issues. Google Drive syncs changes back to the cloud automatically. I get the cloud-first storage I wanted with the local AI tooling I need.
+
+## Quick Reference: Claude Chat vs. Cowork for Google Drive Files
+
+| | Claude Chat + Drive Connector | Cowork + File System Access |
+|---|---|---|
+| **What it accesses** | Cloud-native Google Docs/Sheets/Slides | Real files on disk (.docx, .md, .txt, etc.) |
+| **Where files live** | Google Drive (cloud) | Your local filesystem (shared folders) |
+| **Google Docs support** | Native, works directly | Needs export to .docx or similar |
+| **Best for** | Quick document Q&A, cloud-native editing | Sustained file work, batch operations, code |
+| **Requires** | Google Drive connector enabled | File system access + mirrored folders |
+
+## What I'd Do Differently
+
+If I were setting this up from scratch, I'd create a dedicated `Claude-Projects` folder in Google Drive on day one and set it to mirror immediately. All active working files go there. When a project wraps, I move the folder back to stream-only to reclaim the disk space. That way the boundary between "Cowork can touch this" and "this is just cloud storage" is always clear, and I'm not retroactively figuring out which folders need to be mirrored.
+
+## The Takeaway
+
+If you're using Google Drive for Desktop and want to work with Claude Cowork's file system access, the key thing to know is that "looks local" and "is local" are not the same thing. Streamed files are placeholders until they're actually downloaded, and Cowork needs real bytes on disk.
+
+The fix is simple: mirror the specific folders you need, point Cowork at those folders, use standard file formats, and let Drive handle the cloud sync in the background.
+
+It's a small configuration detail, but it's the kind of thing that can waste an afternoon if you don't know to look for it.
+
+---
+
+*I work in developer relations and community building, and I'm a builder exploring how AI tools fit into real daily workflows. You can find more of what I'm working on at [calebhunter.dev](/). If you're experimenting with Claude Cowork, [Claude Code](/blog/building-with-claude-code), or similar tools, I'd like to hear how you're setting up your environment. What's working? What tripped you up?*
+
+---

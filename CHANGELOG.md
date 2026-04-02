@@ -4,6 +4,18 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ---
 
+## [1.4.0] – 2026-04-02 — Third blog post (Task 16)
+
+### Added
+
+- Third blog post: "I Use Google Drive as My Primary File System. Here's How I Got Claude Cowork to Play Nice With It." — covers streaming vs. mirroring in Google Drive for Desktop, why streamed files are unreliable with Cowork's file system access, the file format gotcha (.gdoc shortcuts vs. real files), and the working setup using selectively mirrored folders.
+- `remark-gfm` dependency to support GFM table syntax in MDX posts.
+- Table styles in `.prose` CSS component (`table`, `thead`, `th`, `td`) for blog posts with comparison tables.
+- Full OpenGraph (`og:type`, `og:title`, `og:description`, `og:url`, `og:publishedTime`) and Twitter Card (`twitter:title`, `twitter:description`) metadata on individual blog post pages.
+- Article JSON-LD structured data (`schema.org/Article`) on individual blog post pages.
+
+---
+
 ## [1.3.0] – 2026-02-24 — Second blog post (Task 15)
 
 ### Added
