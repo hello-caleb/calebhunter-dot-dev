@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import remarkGfm from 'remark-gfm'
 import { ArrowLeft } from 'lucide-react'
 import { getPost, getAllPosts } from '@/lib/blog'
 import Container from '@/components/ui/Container'
@@ -21,11 +22,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
+    openGraph: {
+      type: 'article',
+      title: post.title,
+      description: post.excerpt,
+      url: `https://calebhunter.dev/blog/${slug}`,
+      publishedTime: post.date,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+    },
   }
 }
 
 function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-US', {
+  const [year, month, day] = dateStr.split('-').map(Number)
+  return new Date(year, month - 1, day).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -37,33 +51,56 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPost(slug)
   if (!post) notFound()
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    author: {
+      '@type': 'Person',
+      name: 'Caleb Hunter',
+      url: 'https://calebhunter.dev',
+    },
+    url: `https://calebhunter.dev/blog/${slug}`,
+  }
+
   return (
-    <article className="py-16 md:py-24">
-      <Container>
-        <div className="max-w-2xl mx-auto">
-          {/* Back link */}
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-10"
-          >
-            <ArrowLeft size={14} />
-            All posts
-          </Link>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <article className="py-16 md:py-24">
+        <Container>
+          <div className="max-w-2xl mx-auto">
+            {/* Back link */}
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-10"
+            >
+              <ArrowLeft size={14} />
+              All posts
+            </Link>
 
-          {/* Header */}
-          <header className="mb-10">
-            <time className="text-sm text-text-tertiary">{formatDate(post.date)}</time>
-            <h1 className="font-serif text-4xl md:text-5xl text-text-primary mt-2 leading-tight">
-              {post.title}
-            </h1>
-          </header>
+            {/* Header */}
+            <header className="mb-10">
+              <time className="text-sm text-text-tertiary">{formatDate(post.date)}</time>
+              <h1 className="font-serif text-4xl md:text-5xl text-text-primary mt-2 leading-tight">
+                {post.title}
+              </h1>
+            </header>
 
-          {/* Body */}
-          <div className="prose">
-            <MDXRemote source={post.content} />
+            {/* Body */}
+            <div className="prose">
+              <MDXRemote
+                source={post.content}
+                options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+              />
+            </div>
           </div>
-        </div>
-      </Container>
-    </article>
+        </Container>
+      </article>
+    </>
   )
 }
