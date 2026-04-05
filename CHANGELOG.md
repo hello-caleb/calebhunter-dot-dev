@@ -4,6 +4,23 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ---
 
+## [Unreleased] — V2 font system (KAN-7)
+
+### Added
+
+- Bricolage Grotesque loaded via `next/font/google` as the V2 display/heading font — self-hosted at build time, zero CDN requests.
+- `--font-display` CSS token in `@theme` (Tailwind utility: `font-display`). `--font-serif` retained as a backward-compatible alias; both resolve to Bricolage Grotesque.
+- `--font-body` CSS token as alias for `--font-sans` (DM Sans).
+- `DESIGN_SYSTEM.md` — typography scale (h1–h4, body, caption, mono), color token reference, and layout tokens.
+
+### Changed
+
+- Replaced Instrument Serif with Bricolage Grotesque for all heading elements (`h1`–`h6`) and `.prose h2`/`h3`. Display text now reads as more decisive and product-minded.
+- `layout.tsx`: swapped `Instrument_Serif` import/config for `Bricolage_Grotesque` (variable font, all weights).
+- `globals.css` heading base styles updated to use `var(--font-display)`.
+
+---
+
 ## [Unreleased] — V2 dual-mode color system (KAN-22)
 
 ### Added

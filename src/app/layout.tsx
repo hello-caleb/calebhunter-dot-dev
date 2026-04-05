@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Instrument_Serif, DM_Sans, JetBrains_Mono } from 'next/font/google'
+import { Bricolage_Grotesque, DM_Sans, JetBrains_Mono } from 'next/font/google'
 import '@/styles/globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -7,10 +7,9 @@ import MotionProvider from '@/components/layout/MotionProvider'
 import ChatWidgetLoader from '@/components/layout/ChatWidgetLoader'
 
 // ─── Google Fonts ─────────────────────────────────────────────────────────────
-const instrumentSerif = Instrument_Serif({
-  weight: ['400'],
+const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ['latin'],
-  variable: '--font-instrument-serif',
+  variable: '--font-bricolage-grotesque',
   display: 'swap',
 })
 
@@ -54,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
+      className={`${bricolageGrotesque.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
     >
       <body className="font-sans bg-background text-text-primary antialiased min-h-screen flex flex-col">
         {/* Skip to content — accessibility */}
