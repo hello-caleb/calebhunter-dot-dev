@@ -2,9 +2,10 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react'
-import { m, type Variants } from 'framer-motion'
+import { useReducedMotion, m } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import Badge from '@/components/ui/Badge'
+import { fadeUp, stagger } from '@/lib/animations'
 import type { Project } from '@/content/projects'
 
 const statusVariant = {
@@ -17,17 +18,8 @@ interface ProjectDetailProps {
   project: Project
 }
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-}
-
-const stagger: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-}
-
 export default function ProjectDetail({ project }: ProjectDetailProps) {
+  const shouldReduce = useReducedMotion()
   const { title, tagline, description, status, techStack, aiInvolvement, technicalDecisions, links } =
     project
 
@@ -37,7 +29,11 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
     <section className="py-16 md:py-24">
       <Container>
         <div className="max-w-3xl mx-auto">
-          <m.div variants={stagger} initial="hidden" animate="show">
+          <m.div
+            variants={stagger}
+            initial={shouldReduce ? false : 'hidden'}
+            animate="show"
+          >
             {/* Back link */}
             <m.div variants={fadeUp}>
               <Link

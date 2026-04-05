@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm'
 import { ArrowLeft } from 'lucide-react'
 import { getPost, getAllPosts } from '@/lib/blog'
 import Container from '@/components/ui/Container'
+import AnimatedSection from '@/components/ui/AnimatedSection'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -73,32 +74,34 @@ export default async function BlogPostPage({ params }: Props) {
       />
       <article className="py-16 md:py-24">
         <Container>
-          <div className="max-w-2xl mx-auto">
-            {/* Back link */}
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-10"
-            >
-              <ArrowLeft size={14} />
-              All posts
-            </Link>
+          <AnimatedSection trigger="animate">
+            <div className="max-w-2xl mx-auto">
+              {/* Back link */}
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-10"
+              >
+                <ArrowLeft size={14} />
+                All posts
+              </Link>
 
-            {/* Header */}
-            <header className="mb-10">
-              <time className="text-sm text-text-tertiary">{formatDate(post.date)}</time>
-              <h1 className="font-serif text-4xl md:text-5xl text-text-primary mt-2 leading-tight">
-                {post.title}
-              </h1>
-            </header>
+              {/* Header */}
+              <header className="mb-10">
+                <time className="text-sm text-text-tertiary">{formatDate(post.date)}</time>
+                <h1 className="font-serif text-4xl md:text-5xl text-text-primary mt-2 leading-tight">
+                  {post.title}
+                </h1>
+              </header>
 
-            {/* Body */}
-            <div className="prose">
-              <MDXRemote
-                source={post.content}
-                options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
-              />
+              {/* Body */}
+              <div className="prose">
+                <MDXRemote
+                  source={post.content}
+                  options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                />
+              </div>
             </div>
-          </div>
+          </AnimatedSection>
         </Container>
       </article>
     </>

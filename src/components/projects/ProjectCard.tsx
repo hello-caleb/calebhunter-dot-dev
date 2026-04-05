@@ -14,17 +14,20 @@ const statusVariant = {
 
 interface ProjectCardProps {
   project: Project
+  /** @deprecated index-based delay is handled by the parent stagger container */
   index?: number
 }
 
-export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <m.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.4, ease: 'easeOut', delay: index * 0.08 }}
-      className="group flex flex-col rounded-xl border border-border bg-surface p-6 transition-all duration-200 hover:border-border-hover hover:shadow-md"
+      whileHover={{
+        y: -4,
+        boxShadow:
+          '0 12px 32px -8px rgba(0,0,0,0.12), 0 4px 12px -4px rgba(0,0,0,0.08)',
+        transition: { type: 'spring', stiffness: 300, damping: 24 },
+      }}
+      className="group flex flex-col rounded-xl border border-border bg-surface p-6 transition-colors duration-200 hover:border-border-hover"
     >
       {/* Header: title + status badge */}
       <div className="flex items-start justify-between gap-3 mb-3">

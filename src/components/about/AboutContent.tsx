@@ -1,18 +1,9 @@
 'use client'
 
-import { m, type Variants } from 'framer-motion'
+import { useReducedMotion, m } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import Badge from '@/components/ui/Badge'
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-}
-
-const stagger: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-}
+import { fadeUp, stagger, viewportOnce } from '@/lib/animations'
 
 const stats = [
   { metric: '109%', label: 'developer community growth at Meta (2,200 → 4,600)' },
@@ -43,13 +34,21 @@ const techStack = [
 ]
 
 export default function AboutContent() {
+  const shouldReduce = useReducedMotion()
+
   return (
     <>
       {/* Hero */}
       <section className="py-16 md:py-24 border-b border-border">
         <Container>
-          <p className="text-sm font-medium text-accent uppercase tracking-widest mb-3">About</p>
-          <h1 className="font-serif text-5xl md:text-6xl text-text-primary">Caleb Hunter</h1>
+          <m.div
+            variants={fadeUp}
+            initial={shouldReduce ? false : 'hidden'}
+            animate="show"
+          >
+            <p className="text-sm font-medium text-accent uppercase tracking-widest mb-3">About</p>
+            <h1 className="font-serif text-5xl md:text-6xl text-text-primary">Caleb Hunter</h1>
+          </m.div>
         </Container>
       </section>
 
@@ -58,8 +57,9 @@ export default function AboutContent() {
         <Container>
           <m.div
             variants={stagger}
-            initial="hidden"
-            animate="show"
+            initial={shouldReduce ? false : 'hidden'}
+            whileInView="show"
+            viewport={viewportOnce}
             className="max-w-3xl mx-auto space-y-16"
           >
             {/* 1. Opening */}
