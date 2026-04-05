@@ -50,6 +50,20 @@ export default function ChatWidget() {
 
   useEffect(() => {
     if (!isOpen) return
+    function onClickOutside(e: MouseEvent) {
+      const target = e.target as Node
+      if (
+        panelRef.current?.contains(target) ||
+        openButtonRef.current?.contains(target)
+      ) return
+      close()
+    }
+    document.addEventListener('mousedown', onClickOutside)
+    return () => document.removeEventListener('mousedown', onClickOutside)
+  }, [isOpen, close])
+
+  useEffect(() => {
+    if (!isOpen) return
     const panel = panelRef.current
     if (!panel) return
 

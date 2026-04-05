@@ -3,7 +3,6 @@
 import { m, type Variants } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
-
 const container: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
@@ -47,66 +46,51 @@ const SOCIAL_LINKS = [
 
 export default function Hero() {
   return (
-    <section className="min-h-[calc(100vh-4rem)] flex items-center py-20 md:py-0">
-      <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-          {/* Left: text content — left-aligned per KAN-10 spec */}
-          <m.div variants={container} initial="hidden" animate="show" className="max-w-xl">
-            {/* "Hello, I'm" label */}
-            <m.p variants={item} className="text-sm font-sans text-text-tertiary mb-3 tracking-wide">
-              Hello, I&apos;m
-            </m.p>
+    <section className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden">
+      {/* Hero text */}
+      <Container className="relative z-10 py-20">
+        <m.div variants={container} initial="hidden" animate="show" className="max-w-xl">
+          {/* "Hello, I'm" label */}
+          <m.p variants={item} className="text-sm font-sans text-text-tertiary mb-3 tracking-wide">
+            Hello, I&apos;m
+          </m.p>
 
-            {/* Name */}
-            <m.h1
-              variants={item}
-              className="font-display text-5xl md:text-6xl lg:text-7xl text-text-primary leading-tight"
-            >
-              Caleb Hunter
-            </m.h1>
-
-            {/* Positioning line */}
-            <m.p variants={item} className="mt-5 text-xl md:text-2xl text-text-secondary leading-snug">
-              I build AI-powered products and the developer ecosystems around them.
-            </m.p>
-
-            {/* Primary CTA */}
-            <m.div variants={item} className="mt-8">
-              <Button href="/projects" variant="primary" size="lg">
-                View Projects
-              </Button>
-            </m.div>
-
-            {/* Social icons */}
-            <m.div variants={item} className="mt-8 flex items-center gap-4">
-              {SOCIAL_LINKS.map(({ href, label, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="text-text-tertiary hover:text-accent transition-colors"
-                >
-                  <Icon />
-                </a>
-              ))}
-            </m.div>
-          </m.div>
-
-          {/* Right: Spline 3D scene slot (KAN-9 delivers asset) */}
-          <m.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
-            className="order-first md:order-last"
+          {/* Name */}
+          <m.h1
+            variants={item}
+            className="font-display text-5xl md:text-6xl lg:text-7xl text-text-primary leading-tight"
           >
-            {/* Static placeholder — replaced by Spline component in KAN-9 */}
-            <div className="relative aspect-square w-full max-w-sm mx-auto md:max-w-none rounded-2xl overflow-hidden bg-background-subtle flex items-center justify-center">
-              <span className="text-text-tertiary text-sm font-mono">3D scene (KAN-9)</span>
-            </div>
+            Caleb Hunter
+          </m.h1>
+
+          {/* Positioning line */}
+          <m.p variants={item} className="mt-5 text-xl md:text-2xl text-text-secondary leading-snug">
+            I build AI and XR projects, and the developer ecosystems around them.
+          </m.p>
+
+          {/* Primary CTA */}
+          <m.div variants={item} className="mt-8">
+            <Button href="/projects" variant="primary" size="lg">
+              View Projects
+            </Button>
           </m.div>
-        </div>
+
+          {/* Social icons */}
+          <m.div variants={item} className="mt-8 flex items-center gap-4">
+            {SOCIAL_LINKS.map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="text-text-tertiary hover:text-accent transition-colors"
+              >
+                <Icon />
+              </a>
+            ))}
+          </m.div>
+        </m.div>
       </Container>
     </section>
   )
