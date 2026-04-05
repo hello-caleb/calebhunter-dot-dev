@@ -40,9 +40,11 @@
  *   chat-text:         #FAFAF8
  *
  * Fonts (via next/font/google CSS variables):
- *   serif: Instrument Serif  → var(--font-instrument-serif)
- *   sans:  DM Sans           → var(--font-dm-sans)
- *   mono:  JetBrains Mono    → var(--font-jetbrains-mono)
+ *   display / serif: Bricolage Grotesque → var(--font-bricolage-grotesque)
+ *   sans    / body:  DM Sans             → var(--font-dm-sans)
+ *   mono:            JetBrains Mono      → var(--font-jetbrains-mono)
+ *
+ * Tailwind utilities: font-display, font-serif (alias), font-sans, font-body (alias), font-mono
  *
  * Max-width:
  *   content: 1200px          → max-w-content
