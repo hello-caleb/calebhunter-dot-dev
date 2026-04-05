@@ -52,7 +52,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             {/* Header */}
             <m.div variants={fadeUp} className="mb-8">
               <Badge variant={statusVariant[status]}>{status}</Badge>
-              <h1 className="font-serif text-5xl md:text-6xl text-text-primary mt-3 mb-4">
+              <h1 className="font-serif text-5xl md:text-6xl text-text-primary mt-3 mb-4 lowercase">
                 {title}
               </h1>
               <p className="text-xl text-text-secondary leading-relaxed">{tagline}</p>

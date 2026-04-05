@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { m, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sun } from 'lucide-react'
+import { Menu, X, Sun, Moon } from 'lucide-react'
 import Navigation from './Navigation'
 import Container from '@/components/ui/Container'
 import { useChatWidget } from '@/components/chat/ChatContext'
@@ -26,7 +26,18 @@ function ClaudeIcon({ size = 18 }: { size?: number }) {
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isDark, setIsDark] = useState(false)
   const { toggle: toggleChat } = useChatWidget()
+
+  useEffect(() => {
+    setIsDark(document.documentElement.classList.contains('dark'))
+  }, [])
+
+  function toggleDark() {
+    const next = !isDark
+    document.documentElement.classList.toggle('dark', next)
+    setIsDark(next)
+  }
 
   useEffect(() => {
     function onScroll() {
@@ -67,15 +78,13 @@ export default function Header() {
           >
             <ClaudeIcon size={18} />
           </button>
-          {/* Dark mode toggle — wired in KAN-33 */}
+          {/* Dark mode toggle */}
           <button
-            aria-label="Toggle dark mode"
-            className="p-2 rounded-md text-text-secondary hover:text-text-primary transition-colors"
-            onClick={() => {
-              document.documentElement.classList.toggle('dark')
-            }}
+            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            onClick={toggleDark}
+            className="w-8 h-8 rounded-full bg-accent hover:brightness-110 transition-all flex items-center justify-center text-white"
           >
-            <Sun size={16} />
+            {isDark ? <Sun size={14} /> : <Moon size={14} />}
           </button>
         </div>
 

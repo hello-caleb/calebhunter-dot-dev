@@ -65,7 +65,7 @@ export default function Navigation({ orientation = 'horizontal', onLinkClick }: 
                 {active && (
                   <m.span
                     layoutId="nav-underline"
-                    className="absolute bottom-0 left-0 right-0 h-px bg-accent"
+                    className="absolute bottom-0 left-1/4 right-1/4 h-px bg-accent"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}

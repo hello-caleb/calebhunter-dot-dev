@@ -49,7 +49,7 @@ export default function AboutContent() {
       <section className="py-16 md:py-24 border-b border-border">
         <Container>
           <p className="text-sm font-medium text-accent uppercase tracking-widest mb-3">About</p>
-          <h1 className="font-serif text-5xl md:text-6xl text-text-primary">Caleb Hunter</h1>
+          <h1 className="font-serif text-5xl md:text-6xl text-text-primary lowercase">Caleb Hunter</h1>
         </Container>
       </section>
 
