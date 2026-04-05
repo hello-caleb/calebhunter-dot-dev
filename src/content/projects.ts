@@ -85,6 +85,33 @@ export const projects: Project[] = [
     },
   },
   {
+    id: 'meta-xr-developer',
+    slug: 'meta-xr-developer',
+    title: 'Meta XR Developer Ecosystem',
+    tagline: "Scaled Meta's VR developer community from 2,200 to 4,600 members — 109% growth",
+    description:
+      "Led developer relations and ecosystem growth for Meta's XR platform, doubling the size of the VR developer community through targeted programs, competitions, and technical content. Coordinated a $1.5M developer competition and built the programs that turned early adopters into committed platform builders.",
+    status: 'Live',
+    techStack: [
+      'XR / VR',
+      'Developer Relations',
+      'Community Growth',
+      'Hackathons',
+      'Technical Content',
+      'Meta Quest SDK',
+    ],
+    aiInvolvement:
+      'This program predates the current AI boom, but it directly shaped how I approach AI developer ecosystems today. The core insight was the same: developers need three things to commit to a platform — a reason to care, working technical content they can run on day one, and a community of peers building alongside them. That playbook — applied now to Claude, Gemini, and frontier AI APIs — is what I bring to AI DevRel.',
+    technicalDecisions: [
+      'Community segmentation — separate tracks for hobbyist, indie, and studio developers with different needs and activation criteria',
+      '$1.5M developer competition — largest single investment in the program; drove a measurable spike in new SDK registrations and published apps',
+      'Technical content-first approach — tutorials, sample projects, and workshop curricula targeted at the SDK pain points with highest drop-off',
+      'Metrics accountability — tracked the full funnel from registration to first app submission; 109% community growth measured against a defined baseline',
+      "Partner co-marketing — worked with hardware and middleware partners to co-distribute content and expand reach beyond Meta's owned channels",
+    ],
+    links: {},
+  },
+  {
     id: 'omniroute',
     slug: 'omniroute',
     title: 'OmniRoute',
