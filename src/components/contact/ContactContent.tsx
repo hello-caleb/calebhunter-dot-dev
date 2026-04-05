@@ -1,19 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { m, type Variants } from 'framer-motion'
+import { useReducedMotion, m } from 'framer-motion'
 import { Mail, Linkedin, Github, Twitter, Check } from 'lucide-react'
 import Container from '@/components/ui/Container'
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-}
-
-const stagger: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-}
+import { fadeUp, stagger, viewportOnce } from '@/lib/animations'
 
 const EMAIL = 'caleb.r.hunter@gmail.com'
 
@@ -40,6 +31,7 @@ const socialLinks = [
 
 export default function ContactContent() {
   const [copied, setCopied] = useState(false)
+  const shouldReduce = useReducedMotion()
 
   function handleEmailClick() {
     navigator.clipboard.writeText(EMAIL).then(() => {
@@ -53,12 +45,18 @@ export default function ContactContent() {
       {/* Hero */}
       <section className="py-16 md:py-24 border-b border-border">
         <Container>
-          <p className="text-sm font-medium text-accent uppercase tracking-widest mb-3">Contact</p>
-          <h1 className="font-serif text-5xl md:text-6xl text-text-primary mb-4">Get in Touch</h1>
-          <p className="text-text-secondary text-lg max-w-xl leading-relaxed">
-            I&apos;m currently exploring senior DevRel and AI roles. The best way to reach me is
-            directly.
-          </p>
+          <m.div
+            variants={fadeUp}
+            initial={shouldReduce ? false : 'hidden'}
+            animate="show"
+          >
+            <p className="text-sm font-medium text-accent uppercase tracking-widest mb-3">Contact</p>
+            <h1 className="font-serif text-5xl md:text-6xl text-text-primary mb-4">Get in Touch</h1>
+            <p className="text-text-secondary text-lg max-w-xl leading-relaxed">
+              I&apos;m currently exploring senior DevRel and AI roles. The best way to reach me is
+              directly.
+            </p>
+          </m.div>
         </Container>
       </section>
 
@@ -67,8 +65,9 @@ export default function ContactContent() {
         <Container>
           <m.div
             variants={stagger}
-            initial="hidden"
-            animate="show"
+            initial={shouldReduce ? false : 'hidden'}
+            whileInView="show"
+            viewport={viewportOnce}
             className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl"
           >
             {/* Email — copy to clipboard */}

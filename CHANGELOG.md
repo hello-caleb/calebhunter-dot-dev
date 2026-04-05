@@ -4,6 +4,40 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ---
 
+## [Unreleased] — Site-wide Framer Motion animation system (KAN-12)
+
+### Added
+
+- `src/lib/animations.ts` — shared Variants library: `fadeUp`, `fadeIn`, `stagger`, `scaleIn`, `viewportOnce` viewport config.
+- `src/components/ui/AnimatedSection.tsx` — lightweight client wrapper for `fadeUp` entry on Server Component pages; supports `animate` (above-fold) and `whileInView` (scroll-triggered) modes.
+- `src/components/projects/ProjectsGrid.tsx` — client component that renders the projects grid with stagger + `whileInView` scroll-triggered animations.
+- `src/components/blog/BlogPostList.tsx` — client component for the blog post list with stagger + `whileInView` scroll-triggered animations.
+
+### Changed
+
+- `AboutContent.tsx` — migrated from local inline variants to shared `fadeUp`/`stagger`; body section uses `whileInView` instead of `animate`; hero section uses `animate`; `useReducedMotion()` respected throughout.
+- `ContactContent.tsx` — same migration: shared variants, hero uses `animate`, cards use `whileInView`, `useReducedMotion()` respected.
+- `ProjectDetail.tsx` — migrated to shared variants; `useReducedMotion()` added.
+- `ProjectCard.tsx` — replaced independent `whileInView` entry (now handled by `ProjectsGrid` stagger) with `whileHover={{ y: -4, boxShadow: ... }}` spring lift animation.
+- `projects/page.tsx` — uses `AnimatedSection` for hero entry and `ProjectsGrid` for the animated card grid.
+- `blog/page.tsx` — uses `AnimatedSection` for hero entry and `BlogPostList` for animated post entries.
+- `blog/[slug]/page.tsx` — uses `AnimatedSection` for full-page entry animation.
+
+---
+
+## [Unreleased] — Migrate content to About and add XR project (KAN-14)
+
+### Added
+
+- XR/VR project entry: "Meta XR Developer Ecosystem" — covers scaling Meta's VR developer community from 2,200 to 4,600 members (109% growth), the $1.5M developer competition, and the content and program strategy behind it.
+- `/projects/meta-xr-developer` detail page wired to the new project entry in `src/content/projects.ts`.
+
+### Changed
+
+- Verified `AboutContent.tsx` — bio copy, stat grid, and tech stack are complete and accurate: 20+ years experience at Meta, Google, IBM, Samsung, and Jina AI; current focus on Claude/Gemini/frontier models and hackathons; looking for DevRel/ecosystem role at an AI platform company.
+
+---
+
 ## [Unreleased] — Hero layout and global nav redesign (KAN-10)
 
 ### Added
