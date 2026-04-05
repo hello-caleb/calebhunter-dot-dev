@@ -1,17 +1,21 @@
 @import 'tailwindcss';
 
+/* ─── Dark mode: activate via .dark class on <html> (KAN-22, KAN-33) ────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ─── Design Tokens (Tailwind v4 @theme) ────────────────────────────────────
-   These generate both CSS custom properties AND Tailwind utility classes.
-   e.g. --color-accent → bg-accent, text-accent, border-accent, etc.
+   These are the LIGHT MODE defaults. They generate both CSS custom properties
+   and Tailwind utility classes: e.g. --color-accent → bg-accent, text-accent.
+   Dark mode overrides live in the .dark selector block below.
    ─────────────────────────────────────────────────────────────────────────── */
 @theme {
-  /* Colors */
+  /* ── Light mode colors (default) ── */
   --color-background: #fafaf8;
   --color-background-subtle: #f3f2ee;
   --color-surface: #ffffff;
   --color-text-primary: #1a1a1a;
   --color-text-secondary: #6b6b6b;
-  --color-text-tertiary: #717171;
+  --color-text-tertiary: #9b9b9b;
   --color-accent: #d4763c;
   --color-accent-hover: #be6832;
   --color-accent-light: #fdf0e7;
@@ -28,6 +32,29 @@
 
   /* Max-width for content container */
   --max-width-content: 1200px;
+}
+
+/* ─── Dark Mode Token Overrides ──────────────────────────────────────────────
+   Applied when .dark is present on <html>. Overrides the @theme CSS vars so
+   all Tailwind utilities (bg-background, text-text-primary, etc.) resolve to
+   dark mode values automatically — no dark: prefix needed on components.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root.dark,
+.dark {
+  --color-background: #111111;
+  --color-background-subtle: #1a1a1a;
+  --color-surface: #222222;
+  --color-text-primary: #fafaf8;
+  --color-text-secondary: #a0a09a;
+  --color-text-tertiary: #6b6b68;
+  --color-accent: #d4763c;
+  --color-accent-hover: #e8874d;
+  --color-accent-light: #2a1a0f;
+  --color-border: #2e2e2c;
+  --color-border-hover: #3d3d3a;
+  --color-code-bg: #1e1e1c;
+  --color-chat-bg: #0d0d0d;
+  --color-chat-text: #fafaf8;
 }
 
 /* ─── Base Styles ────────────────────────────────────────────────────────── */
