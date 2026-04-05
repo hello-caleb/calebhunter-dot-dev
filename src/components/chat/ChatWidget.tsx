@@ -5,6 +5,7 @@ import { m, AnimatePresence, type Variants } from 'framer-motion'
 import { X, MessageCircle } from 'lucide-react'
 import ChatMessage from './ChatMessage'
 import ChatInput from './ChatInput'
+import { useChatWidget } from './ChatContext'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -24,7 +25,7 @@ function generateSessionId() {
 }
 
 export default function ChatWidget() {
-  const [isOpen, setIsOpen] = useState(false)
+  const { isOpen, close, toggle } = useChatWidget()
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [limitReached, setLimitReached] = useState(false)
@@ -35,21 +36,18 @@ export default function ChatWidget() {
 
   const sentCount = messages.filter((m) => m.role === 'user').length
 
-  // Scroll to bottom when messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isLoading])
 
-  // Escape key closes panel
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape' && isOpen) setIsOpen(false)
+      if (e.key === 'Escape' && isOpen) close()
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
-  }, [isOpen])
+  }, [isOpen, close])
 
-  // Focus trap: keep focus inside panel when open
   useEffect(() => {
     if (!isOpen) return
     const panel = panelRef.current
@@ -75,7 +73,6 @@ export default function ChatWidget() {
     return () => panel.removeEventListener('keydown', trap)
   }, [isOpen])
 
-  // Return focus to open button on close
   useEffect(() => {
     if (!isOpen) openButtonRef.current?.focus()
   }, [isOpen])
@@ -104,7 +101,6 @@ export default function ChatWidget() {
 
       if (!res.ok || !res.body) throw new Error('Request failed')
 
-      // Stream SSE response
       setMessages((prev) => [...prev, { role: 'assistant', content: '' }])
       const reader = res.body.getReader()
       const decoder = new TextDecoder()
@@ -170,7 +166,7 @@ export default function ChatWidget() {
                 </p>
               </div>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={close}
                 aria-label="Close chat"
                 className="text-[#6b6b6b] hover:text-[#fafaf8] transition-colors p-1 rounded"
               >
@@ -207,22 +203,17 @@ export default function ChatWidget() {
 
             {/* Input */}
             <div className="px-4 pb-4 shrink-0">
-              <ChatInput
-                onSend={sendMessage}
-                disabled={isLoading || limitReached}
-              />
-              <p className="text-[10px] text-[#6b6b6b] text-center mt-2">
-                Powered by Claude
-              </p>
+              <ChatInput onSend={sendMessage} disabled={isLoading || limitReached} />
+              <p className="text-[10px] text-[#6b6b6b] text-center mt-2">Powered by Claude</p>
             </div>
           </m.div>
         )}
       </AnimatePresence>
 
-      {/* Toggle button */}
+      {/* Floating toggle button */}
       <button
         ref={openButtonRef}
-        onClick={() => setIsOpen((o) => !o)}
+        onClick={toggle}
         aria-label={isOpen ? 'Close chat' : 'Ask Claude about me'}
         aria-expanded={isOpen}
         className="flex items-center gap-2 px-4 py-3 rounded-full bg-accent text-white text-sm font-medium shadow-lg hover:bg-accent-hover transition-colors"
