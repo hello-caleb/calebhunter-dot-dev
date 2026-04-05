@@ -2,12 +2,13 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { m } from 'framer-motion'
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
   { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/blog', label: 'Insights' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -49,20 +50,29 @@ export default function Navigation({ orientation = 'horizontal', onLinkClick }: 
   return (
     <nav aria-label="Main navigation">
       <ul className="flex items-center gap-8">
-        {NAV_LINKS.map(({ href, label }) => (
-          <li key={href}>
-            <Link
-              href={href}
-              className={`text-sm font-medium transition-colors relative pb-0.5 ${
-                isActive(href)
-                  ? 'text-accent after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-accent'
-                  : 'text-text-secondary hover:text-text-primary'
-              }`}
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
+        {NAV_LINKS.map(({ href, label }) => {
+          const active = isActive(href)
+          return (
+            <li key={href} className="relative">
+              <Link
+                href={href}
+                onClick={onLinkClick}
+                className={`text-sm font-medium transition-colors pb-1 ${
+                  active ? 'text-accent' : 'text-text-secondary hover:text-accent'
+                }`}
+              >
+                {label}
+                {active && (
+                  <m.span
+                    layoutId="nav-underline"
+                    className="absolute bottom-0 left-1/4 right-1/4 h-px bg-accent"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </Link>
+            </li>
+          )
+        })}
       </ul>
     </nav>
   )

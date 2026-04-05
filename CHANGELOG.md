@@ -4,6 +4,25 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ---
 
+## [Unreleased] — Hero layout and global nav redesign (KAN-10)
+
+### Added
+
+- `ChatContext` — React context + `ChatProvider` for shared widget open/close state; enables nav Claude icon to open the chat panel.
+- `useChatWidget` hook consumed by `Header` and `ChatWidget`.
+- Social icons row in hero (LinkedIn, GitHub, X) — inline SVGs styled in `text-tertiary` with `hover:text-accent`.
+- "Hello, I'm" label above name in hero — DM Sans, muted, per locked spec.
+- Spline 3D scene placeholder slot in hero right column (replaced by KAN-9 asset).
+
+### Changed
+
+- **Hero**: Full rewrite to locked spec — left-aligned single column, full-viewport height (`min-h-[calc(100vh-4rem)]`), one primary CTA ("View Projects"), removed second CTA and bio copy (bio migrates to About in KAN-14).
+- **Header**: Wordmark updated — `caleb` bold terracotta, `hunter` muted; scroll state adds `backdrop-blur` + reduced opacity background; Claude icon button in right nav opens chat widget; dark mode toggle button (temp inline class toggle, wired properly in KAN-33).
+- **Navigation**: Magic-line underline via Framer Motion `layoutId="nav-underline"` — slides between active and hovered links; "Blog" renamed to "Insights" per spec; active link text terracotta, no weight change.
+- **MotionProvider**: `ChatProvider` moved outside `LazyMotion` to prevent animation state reset on async feature load.
+
+---
+
 ## [Unreleased] — V2 font system (KAN-7)
 
 ### Added

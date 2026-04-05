@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
+    "@splinetool/react-spline": "^4.1.0",
+    "@splinetool/runtime": "^1.12.74",
     "clsx": "^2.1.1",
     "framer-motion": "^12.34.3",
     "gray-matter": "^4.0.3",
