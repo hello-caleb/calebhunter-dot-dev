@@ -4,6 +4,22 @@ All notable changes to the calebhunter.dev portfolio project will be documented 
 
 ---
 
+## [Unreleased] — V2 dual-mode color system (KAN-22)
+
+### Added
+
+- `@custom-variant dark` directive in `globals.css` activates Tailwind's `dark:` prefix via `.dark` class on `<html>` (class strategy, not OS media query — required for KAN-33 toggle).
+- Full dark mode token set in `.dark` / `:root.dark` selector block: near-black backgrounds (`#111111`, `#1A1A1A`, `#222222`), inverted text scale, terracotta accent unchanged, adjusted hover and accent-light values for dark surfaces.
+- `darkMode: 'class'` in `tailwind.config.ts` for IDE/tooling compatibility; authoritative config is the CSS `@custom-variant` directive.
+
+### Changed
+
+- `--color-text-tertiary` corrected from `#717171` to `#9B9B9B` per KAN-22 spec.
+- `tailwind.config.ts` documentation comment updated to reflect both light and dark token sets.
+- All Tailwind utilities (`bg-background`, `text-text-primary`, `border-border`, etc.) now automatically resolve to dark values when `.dark` is present — no per-component `dark:` prefixes required for base tokens.
+
+---
+
 ## [1.4.0] – 2026-04-02 — Third blog post (Task 16)
 
 ### Added
