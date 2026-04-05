@@ -60,7 +60,7 @@ export default function Hero() {
             {/* Name */}
             <m.h1
               variants={item}
-              className="font-display text-5xl md:text-6xl lg:text-7xl text-text-primary leading-tight lowercase"
+              className="font-display text-5xl md:text-6xl lg:text-7xl text-text-primary leading-tight"
             >
               Caleb Hunter
             </m.h1>

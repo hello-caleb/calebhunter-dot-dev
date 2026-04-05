@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: Props) {
             {/* Header */}
             <header className="mb-10">
               <time className="text-sm text-text-tertiary">{formatDate(post.date)}</time>
-              <h1 className="font-serif text-4xl md:text-5xl text-text-primary mt-2 leading-tight lowercase">
+              <h1 className="font-serif text-4xl md:text-5xl text-text-primary mt-2 leading-tight">
                 {post.title}
               </h1>
             </header>

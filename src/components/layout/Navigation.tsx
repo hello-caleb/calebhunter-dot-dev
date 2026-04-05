@@ -58,7 +58,7 @@ export default function Navigation({ orientation = 'horizontal', onLinkClick }: 
                 href={href}
                 onClick={onLinkClick}
                 className={`text-sm font-medium transition-colors pb-1 ${
-                  active ? 'text-accent' : 'text-text-secondary hover:text-text-primary'
+                  active ? 'text-accent' : 'text-text-secondary hover:text-accent'
                 }`}
               >
                 {label}

@@ -54,7 +54,7 @@ export default function ContactContent() {
       <section className="py-16 md:py-24 border-b border-border">
         <Container>
           <p className="text-sm font-medium text-accent uppercase tracking-widest mb-3">Contact</p>
-          <h1 className="font-serif text-5xl md:text-6xl text-text-primary mb-4 lowercase">Get in Touch</h1>
+          <h1 className="font-serif text-5xl md:text-6xl text-text-primary mb-4">Get in Touch</h1>
           <p className="text-text-secondary text-lg max-w-xl leading-relaxed">
             I&apos;m currently exploring senior DevRel and AI roles. The best way to reach me is
             directly.

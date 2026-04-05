@@ -16,7 +16,7 @@ export default function ProjectsPage() {
       <section className="py-16 md:py-24 border-b border-border">
         <Container>
           <p className="text-sm font-medium text-accent uppercase tracking-widest mb-3">Work</p>
-          <h1 className="font-serif text-5xl md:text-6xl text-text-primary mb-4 lowercase">Projects</h1>
+          <h1 className="font-serif text-5xl md:text-6xl text-text-primary mb-4">Projects</h1>
           <p className="text-text-secondary text-lg max-w-xl leading-relaxed">
             Hackathon submissions, AI experiments, and tools in the making — all built with
             AI-assisted workflows.

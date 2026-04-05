@@ -3,25 +3,11 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { m, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sun, Moon } from 'lucide-react'
+import { Menu, X, Sun, Moon, MessageCircle } from 'lucide-react'
 import Navigation from './Navigation'
 import Container from '@/components/ui/Container'
 import { useChatWidget } from '@/components/chat/ChatContext'
 
-// Inline Claude logomark SVG
-function ClaudeIcon({ size = 18 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-.5 14.5v-9l6 4.5-6 4.5z" />
-    </svg>
-  )
-}
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -71,21 +57,32 @@ export default function Header() {
 
         {/* Right icons — Claude + dark mode toggle */}
         <div className="hidden md:flex items-center gap-2">
-          <button
-            onClick={toggleChat}
-            aria-label="Ask Claude about me"
-            className="p-2 rounded-md text-text-secondary hover:text-accent transition-colors"
-          >
-            <ClaudeIcon size={18} />
-          </button>
+          {/* Claude chat widget button */}
+          <div className="relative group">
+            <button
+              onClick={toggleChat}
+              aria-label="Ask Claude about Caleb"
+              className="w-8 h-8 rounded-full bg-accent/75 hover:bg-accent hover:shadow-[0_0_12px_4px] hover:shadow-accent/50 transition-all flex items-center justify-center text-white"
+            >
+              <MessageCircle size={15} />
+            </button>
+            <div className="pointer-events-none absolute top-full right-0 mt-2 px-2.5 py-1.5 rounded-md bg-surface border border-border shadow-md text-xs text-text-primary whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+              Ask Claude about Caleb
+            </div>
+          </div>
           {/* Dark mode toggle */}
-          <button
-            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-            onClick={toggleDark}
-            className="w-8 h-8 rounded-full bg-accent hover:brightness-110 transition-all flex items-center justify-center text-white"
-          >
-            {isDark ? <Sun size={14} /> : <Moon size={14} />}
-          </button>
+          <div className="relative group">
+            <button
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              onClick={toggleDark}
+              className="w-8 h-8 rounded-full bg-accent/75 hover:bg-accent hover:shadow-[0_0_12px_4px] hover:shadow-accent/50 transition-all flex items-center justify-center text-white"
+            >
+              {isDark ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
+            <div className="pointer-events-none absolute top-full right-0 mt-2 px-2.5 py-1.5 rounded-md bg-surface border border-border shadow-md text-xs text-text-primary whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+              {isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            </div>
+          </div>
         </div>
 
         {/* Mobile hamburger */}
@@ -116,8 +113,8 @@ export default function Header() {
                   onClick={() => { toggleChat(); setMenuOpen(false) }}
                   className="flex items-center gap-2 text-sm text-text-secondary hover:text-accent transition-colors"
                 >
-                  <ClaudeIcon size={16} />
-                  Ask Claude about me
+                  <MessageCircle size={16} />
+                  Ask Claude about Caleb
                 </button>
               </div>
             </Container>
